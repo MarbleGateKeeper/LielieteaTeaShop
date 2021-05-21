@@ -1,5 +1,7 @@
 package love.marblegate.lielietea.util.datastructure;
 
+import net.minecraft.nbt.CompoundNBT;
+
 import java.util.HashMap;
 import java.util.Map;
 

@@ -4,7 +4,7 @@ import love.marblegate.lielietea.capability.drinkinfo.DrinkInfo;
 import love.marblegate.lielietea.capability.drinkinfo.DrinkInfoProvider;
 import love.marblegate.lielietea.capability.drinkinfo.IDrinkInfo;
 import love.marblegate.lielietea.itemgroup.ModGroup;
-import love.marblegate.lielietea.util.drink.DrinkUtils;
+import love.marblegate.lielietea.util.DrinkUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,6 +15,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 
@@ -55,17 +57,6 @@ public class Drink extends Item {
             /* 在此处添加效果
 
              */
-
-            //Test Code
-            drink_info_cap.ifPresent(
-                    cap-> {
-                        System.out.print(cap.getRemaining());
-                        System.out.print(cap.getFoodlevel());
-                        System.out.print(cap.getFeatures());
-                        System.out.print(cap.getIngredients());
-                    }
-            );
-
         }
 
         if(!enough.get()){
@@ -104,6 +95,7 @@ public class Drink extends Item {
         return 40;
     }
 
+    @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         LazyOptional<IDrinkInfo> drink_info_cap = stack.getCapability(DrinkInfo.DRINK_INFO);
         drink_info_cap.ifPresent(

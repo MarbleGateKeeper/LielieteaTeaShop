@@ -28,6 +28,9 @@ public class DrinkInfo {
         public INBT writeNBT(Capability<IDrinkInfo> capability, IDrinkInfo instance, Direction side) {
             CompoundNBT compoundNBT = new CompoundNBT();
             //Ingredient List
+            //SHOULD IT RECORD THE COUNT OF TOTAL INGREDIENTS?
+            //WILL IT CAUSE PROBLEM IF NO RECORD WHEN readNBT?
+            compoundNBT.putInt("drink_ingredient_count",instance.getIngredients().size()); //TOTAL COUNT
             for (int i = 0; i < instance.getIngredients().size(); i++) {
                 CompoundNBT ingredientInfoNBT = instance.getIngredients().get(i).serializeNBT();
                 compoundNBT.put("drink_ingredient_" + i, ingredientInfoNBT);
@@ -52,8 +55,9 @@ public class DrinkInfo {
         @Override
         public void readNBT(Capability<IDrinkInfo> capability, IDrinkInfo instance, Direction side, INBT nbt) {
             //Ingredient List
+            int ingredientsTotal = ((CompoundNBT)nbt).getInt("drink_ingredient_count"); //TOTAL COUNT
             List<IngredientInfo> ingredientInfos = new ArrayList<>();
-            for (int i = 0; i < instance.getIngredients().size(); i++) {
+            for (int i = 0; i < ingredientsTotal; i++) {
                 IngredientInfo ingredientInfo = new IngredientInfo();
                 ingredientInfo.deserializeNBT(((CompoundNBT)nbt).getCompound("ingredient_" + i));
                 ingredientInfos.add(ingredientInfo);

@@ -1,0 +1,19 @@
+{
+  "lielietea.drink_status_head.contained_ingredient": "Ingredient: ",
+  "lielietea.drink_status_head.contained_ingredients": "Ingredients: ",
+  "lielietea.drink_status_head.feature": "Special Effect: ",
+  "lielietea.drink_status_head.features": "Special Effects: ",
+  "lielietea.drink_status_head.provide_foodlevel": "Food Level Offered: ",
+  "lielietea.drink_status_head.drink_remaining": "Remaining: ",
+  "lielietea.plant_status_head.come_from": "Origin: ",
+  "lielietea.plant_status_head.feature": "Special Effect: ",
+  "lielietea.plant_status_head.features": "Special Effects: ",
+
+  "lielietea.ingredient.none": "Water",
+  "lielietea.feature.none": "No Special Effect",
+
+  "lielietea.plant_material.tree_leaf": "Tree Leaf",
+
+  "iteam.lielietea.tree_leaf": "Tree Leaf"
+
+}

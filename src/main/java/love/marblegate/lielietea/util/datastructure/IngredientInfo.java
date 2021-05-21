@@ -4,53 +4,48 @@ import net.minecraft.nbt.CompoundNBT;
 
 public class IngredientInfo {
     IngredientType type;
-    byte nameFormat;
-    int nameCode;
-    ProductSeries series;
+    IngredientSource source;
+    PlantInfo plant;
 
     public IngredientInfo() {
         this.type = IngredientType.valueOf(0);
-        this.nameFormat = 0;
-        this.nameCode = 0;
-        this.series = ProductSeries.valueOf(0);
+        this.source = IngredientSource.valueOf(0);
+        this.plant = new PlantInfo();
     }
 
-    public IngredientInfo(IngredientType type, byte nameFormat, int nameCode, ProductSeries series) {
+    public IngredientInfo(IngredientType type, IngredientSource source, PlantInfo plant) {
         this.type = type;
-        this.nameFormat = nameFormat;
-        this.nameCode = nameCode;
-        this.series = series;
+        this.source = source;
+        this.plant = plant;
     }
 
     public IngredientType getType() {
         return type;
     }
 
-    public byte getNameFormat() {
-        return nameFormat;
+    public IngredientSource getSource() {
+        return source;
     }
 
-    public int getNameCode() {
-        return nameCode;
-    }
-
-    public ProductSeries getSeries() {
-        return series;
+    public PlantInfo getPlant() {
+        return plant;
     }
 
     public CompoundNBT serializeNBT() {
         CompoundNBT compoundNBT = new CompoundNBT();
         compoundNBT.putInt("ingredient_type", type.getValue());
-        compoundNBT.putByte("name_format",nameFormat);
-        compoundNBT.putInt("name_code", nameCode);
-        compoundNBT.putInt("product_series", series.getValue());
+        compoundNBT.putInt("ingredient_source", source.getValue());
+        CompoundNBT plantInfoNBT = plant.serializeNBT();
+        compoundNBT.put("plant_info", plantInfoNBT);
         return compoundNBT;
     }
 
     public void deserializeNBT(CompoundNBT compoundNBT) {
-        this.type = IngredientType.valueOf(compoundNBT.getInt("slot_count"));
-        this.nameFormat = compoundNBT.getByte("name_format");
-        this.nameCode = compoundNBT.getInt("name_code");
-        this.series = ProductSeries.valueOf(compoundNBT.getInt("product_series"));
+        this.type = IngredientType.valueOf(compoundNBT.getInt("ingredient_type"));
+        this.source = IngredientSource.valueOf(compoundNBT.getInt("ingredient_source"));
+        PlantInfo plantInfo = new PlantInfo();
+        plantInfo.deserializeNBT(compoundNBT.getCompound("plant_info"));
     }
+
+
 }
