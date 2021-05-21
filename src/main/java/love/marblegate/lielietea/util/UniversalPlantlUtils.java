@@ -10,7 +10,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.List;
 
 public class UniversalPlantlUtils {
-    private static final IFormattableTextComponent no_feature = (new TranslationTextComponent("lielietea.feature.none")).mergeStyle(TextFormatting.WHITE);
 
     @OnlyIn(Dist.CLIENT)
     public static void addPotionTooltip(ItemStack itemIn, List<ITextComponent> lores,
@@ -19,9 +18,7 @@ public class UniversalPlantlUtils {
         /* 等待添加
 
         */
-        if (features.isEmpty()) {
-            lores.add(no_feature);
-        } else {
+        if (!features.isEmpty()){
             if(features.size()==1){
                 lores.add(new TranslationTextComponent("lielietea.plant_status_head.feature").mergeStyle(TextFormatting.WHITE));
                 //等待添加

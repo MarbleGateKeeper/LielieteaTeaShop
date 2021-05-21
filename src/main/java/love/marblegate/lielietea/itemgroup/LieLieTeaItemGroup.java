@@ -11,6 +11,6 @@ public class LieLieTeaItemGroup extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(ItemRegistry.drink.get());
+        return new ItemStack(ItemRegistry.green_tea.get());
     }
 }

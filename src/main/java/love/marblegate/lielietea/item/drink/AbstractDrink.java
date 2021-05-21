@@ -1,4 +1,4 @@
-package love.marblegate.lielietea.item;
+package love.marblegate.lielietea.item.drink;
 
 import love.marblegate.lielietea.capability.drinkinfo.DrinkInfo;
 import love.marblegate.lielietea.capability.drinkinfo.DrinkInfoProvider;
@@ -25,13 +25,13 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Drink extends Item {
+public abstract class AbstractDrink extends Item {
     private static final Food food = (new Food.Builder())
             .saturation(1)
             .hunger(0)
             .build();
 
-    public Drink() {
+    public AbstractDrink() {
         super(new Properties()
                 .group(ModGroup.itemGroup)
                 .maxStackSize(1)

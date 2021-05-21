@@ -9,11 +9,44 @@
   "lielietea.plant_status_head.feature": "Special Effect: ",
   "lielietea.plant_status_head.features": "Special Effects: ",
 
-  "lielietea.ingredient.none": "Water",
-  "lielietea.feature.none": "No Special Effect",
+  "lielietea.ingredient.none": "Something went wrong. it's just water. Please contact customer service center.",
 
-  "lielietea.plant_material.tree_leaf": "Tree Leaf",
+  "lielietea.drink.green_tea": "Green Tea",
+  "lielietea.drink.black_tea": "Black Tea",
+  "lielietea.drink.dark_tea": "Dark Tea",
+  "lielietea.drink.white_tea": "White Tea",
+  "lielietea.drink.oolong_tea": "Oolong Tea",
+  "lielietea.drink.yellow_tea": "Yellow Tea",
+  "lielietea.drink.flower_tea": "Flower Tea",
+  "lielietea.drink.fruit_tea": "Fruit Tea",
+  "lielietea.drink.milk": "Milk",
+  "lielietea.drink.milk_tea": "Milk Tea",
+  "lielietea.drink.soured_milk": "Soured Milk",
+  "lielietea.drink.flavored_milk": "Flavored Milk",
+  "lielietea.drink.brewage": "Brewage",
+  "lielietea.drink.juice": "Juice",
+  "lielietea.drink.soup": "Soup",
+  "lielietea.drink.soda_drink": "Soda Drink",
 
-  "iteam.lielietea.tree_leaf": "Tree Leaf"
+  "item.lielietea.green_tea": "LieLieTea™ Drink",
+  "item.lielietea.black_tea": "LieLieTea™ Drink",
+  "item.lielietea.dark_tea": "LieLieTea™ Drink",
+  "item.lielietea.white_tea": "LieLieTea™ Drink",
+  "item.lielietea.oolong_tea": "LieLieTea™ Drink",
+  "item.lielietea.yellow_tea": "LieLieTea™ Drink",
+  "item.lielietea.flower_tea": "LieLieTea™ Drink",
+  "item.lielietea.fruit_tea": "LieLieTea™ Drink",
+  "item.lielietea.milk": "LieLieTea™ Drink",
+  "item.lielietea.milk_tea": "LieLieTea™ Drink",
+  "item.lielietea.soured_milk": "LieLieTea™ Drink",
+  "item.lielietea.flavored_milk": "LieLieTea™ Drink",
+  "item.lielietea.juice": "LieLieTea™ Drink",
+  "item.lielietea.brewage": "LieLieTea™ Drink",
+  "item.lielietea.soup": "LieLieTea™ Drink",
+  "item.lielietea.soda_drink": "LieLieTea™ Drink",
+
+  "item.lielietea.tree_leaf": "Tree Leaf",
+
+  "itemGroup.lielietea_group": "LieLieTea Tea Shop"
 
 }

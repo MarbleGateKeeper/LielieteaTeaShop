@@ -19,8 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DrinkUtils {
-    private static final IFormattableTextComponent no_ingredient = (new TranslationTextComponent("lielietea.ingredient.none")).mergeStyle(TextFormatting.WHITE);
-    private static final IFormattableTextComponent no_feature = (new TranslationTextComponent("lielietea.feature.none")).mergeStyle(TextFormatting.WHITE);
+    private static final IFormattableTextComponent no_ingredient = (new TranslationTextComponent("lielietea.ingredient.none")).mergeStyle(TextFormatting.DARK_RED).mergeStyle(TextFormatting.BOLD);
 
     @OnlyIn(Dist.CLIENT)
     public static void addPotionTooltip(ItemStack itemIn, List<ITextComponent> lores,
@@ -43,9 +42,7 @@ public class DrinkUtils {
             }
         }
 
-        if (features.isEmpty()) {
-            lores.add(no_feature);
-        } else {
+        if (!features.isEmpty()) {
             if(features.size()==1){
                 lores.add(new TranslationTextComponent("lielietea.drink_status_head.feature").mergeStyle(TextFormatting.WHITE));
                 //等待添加
