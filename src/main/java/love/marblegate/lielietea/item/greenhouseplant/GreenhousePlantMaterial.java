@@ -1,4 +1,4 @@
-package love.marblegate.lielietea.item.plantmaterial;
+package love.marblegate.lielietea.item.greenhouseplant;
 
 import love.marblegate.lielietea.capability.plantinfo.IUniversalPlantInfo;
 import love.marblegate.lielietea.capability.plantinfo.UniversalPlantInfo;
@@ -20,14 +20,13 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class AbstractPlantMaterial extends Item {
-    public AbstractPlantMaterial() {
+public class GreenhousePlantMaterial extends Item {
+    public GreenhousePlantMaterial() {
         super(new Properties()
-                .group(ModGroup.itemGroup)
-                .maxStackSize(8));
+                .group(ModGroup.ingredientGroup)
+                .maxStackSize(16));
     }
 
-    // The CapabilityProvider returned from this method is used to specify which capabilities the it has
     @Nonnull
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT oldCapNbt) {

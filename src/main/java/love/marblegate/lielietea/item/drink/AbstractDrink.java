@@ -33,7 +33,7 @@ public abstract class AbstractDrink extends Item {
 
     public AbstractDrink() {
         super(new Properties()
-                .group(ModGroup.itemGroup)
+                .group(ModGroup.drinkGroup)
                 .maxStackSize(1)
                 .food(food));
     }

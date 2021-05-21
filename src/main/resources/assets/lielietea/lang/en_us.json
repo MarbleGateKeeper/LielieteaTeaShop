@@ -46,7 +46,33 @@
   "item.lielietea.soda_drink": "LieLieTea™ Drink",
 
   "item.lielietea.tree_leaf": "Tree Leaf",
+  "item.lielietea.tree_flower": "Tree Flower",
+  "item.lielietea.tree_fruit": "Tree Fruit",
+  "item.lielietea.shrub_leaf": "Shrub Leaf",
+  "item.lielietea.shrub_flower": "Shrub Flower",
+  "item.lielietea.shrub_fruit": "Shrub Fruit",
+  "item.lielietea.juicy_shrub_root": "Juicy Shrub Root",
+  "item.lielietea.brewable_shrub_root": "Brewable Shrub Root",
+  "item.lielietea.vine_leaf": "Vine Leaf",
+  "item.lielietea.juicy_vine_leaf": "Juicy Vine Leaf",
+  "item.lielietea.vine_flower": "Vine Flower",
+  "item.lielietea.juice_vine_stem": "Juicy Vine Stem",
+  "item.lielietea.milkable_vine_stem": "Milkable Vine Stem",
+  "item.lielietea.brewable_vine_stem": "Brewable Vine Stem",
+  "item.lielietea.vine_fruit": "Vine Fruit",
+  "item.lielietea.juicy_vine_root": "Juicy Vine Root",
+  "item.lielietea.brewable_vine_root": "Brewable Vine Root",
+  "item.lielietea.juicy_mushroom": "Juicy Mushroom",
+  "item.lielietea.milkable_mushroom": "Milkable Mushroom",
+  "item.lielietea.brewable_mushroom": "Brewable Mushroom",
 
-  "itemGroup.lielietea_group": "LieLieTea Tea Shop"
+  "item.lielietea.tree_sapling": "Greenhouse Tree Sapling",
+  "item.lielietea.shrub_seed": "Greenhouse Shrub Seed",
+  "item.lielietea.vine_seed": "Greenhouse Vine Seed",
+  "item.lielietea.mushroom_spawn": "Greenhouse Mushroom Spawn",
+
+  "itemGroup.lielietea.drink": "LieLieTea™ Tea Shop: Drink",
+  "itemGroup.lielietea.ingredient": "LieLieTea™ Tea Shop: Ingredient",
+  "itemGroup.lielietea.production": "LieLieTea™ Tea Shop: Production"
 
 }

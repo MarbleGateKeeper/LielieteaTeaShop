@@ -6,9 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum ProductSeries {
-    REGULAR(0),
-    LIMITED(1),
-    EXPERIMENTAL(2);
+    Regular(0),
+    GreenHouse(1);
 
     private int value;
     private static Map map = new HashMap<>();
