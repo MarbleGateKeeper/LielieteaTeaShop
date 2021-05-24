@@ -19,32 +19,30 @@ public class UniversalPlantlUtils {
         UniversalPlantType type = plantInfo.getType();
         switch (type){
             case VANILLA:
-                lores.add(new StringTextComponent(plantInfo.getRandName()));
+                lores.add(new StringTextComponent(plantInfo.getRandName()).mergeStyle(TextFormatting.GRAY));
                 break;
             case GROWABLE_REGULAR:
-                lores.add(new StringTextComponent(plantInfo.getRandName()));
+                lores.add(new StringTextComponent(plantInfo.getRandName()).mergeStyle(TextFormatting.GRAY));
                 break;
             case GROWABLE_SPECIAL:
-                lores.add(new StringTextComponent(plantInfo.getRandName()));
+                lores.add(new StringTextComponent(plantInfo.getRandName()).mergeStyle(TextFormatting.GRAY));
                 break;
             case GREENHOUSE_C:
-                lores.add(new TranslationTextComponent("lielietea.planttype.greenhouse_c.pre_"+plantInfo.getNameCode()%5)
+                lores.add(new TranslationTextComponent("lielietea.planttype.greenhouse_c.pre_"+plantInfo.getNameCode()%6)
                                 .mergeStyle(TextFormatting.GRAY)
                                 .appendSibling(new StringTextComponent(" "+plantInfo.getRandName())));
                 break;
             case GREENHOUSE_B:
                 int temp = plantInfo.getNameCode()%10;
                 StringTextComponent textComponent = new StringTextComponent(plantInfo.getRandName());
-                if(temp<3){
-                    textComponent.appendSibling( new TranslationTextComponent("lielietea.planttype.greenhouse_b.suf_"+temp));
-                }
+                textComponent.appendSibling(new StringTextComponent(" ")).appendSibling( new TranslationTextComponent("lielietea.planttype.greenhouse_b.suf_"+temp));
                 lores.add(textComponent.mergeStyle(TextFormatting.GRAY));
                 break;
             case GREENHOUSE_A:
                 //Need To Specify How Many Kind
-                lores.add(new TranslationTextComponent("lielietea.planttype.greenhouse_a.pre_"+plantInfo.getNameCode()%10).mergeStyle(TextFormatting.GRAY)
-                        .appendString(" ")
-                        .appendSibling(new TranslationTextComponent("lielietea.planttype.greenhouse_a.pre_"+plantInfo.getNameCode()%10+"_"+(plantInfo.getNameCode()/10)%10)));
+                lores.add(new TranslationTextComponent("lielietea.planttype.greenhouse_a.pre_"+plantInfo.getNameCode()%5).mergeStyle(TextFormatting.GRAY)
+                        .appendString("-")
+                        .appendSibling(new TranslationTextComponent("lielietea.planttype.greenhouse_a.pre_"+plantInfo.getNameCode()%5+".series_"+(plantInfo.getNameCode()/10)%5)));
                 break;
             case GREENHOUSE_UNKNOWN:
                 lores.add(new TranslationTextComponent("lielietea.planttype.greenhouse_a.unidentified").mergeStyle(TextFormatting.GRAY));

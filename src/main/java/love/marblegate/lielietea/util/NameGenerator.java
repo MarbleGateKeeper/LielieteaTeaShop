@@ -22,8 +22,8 @@ public class NameGenerator {
         StringBuffer buff = new StringBuffer();
 
         //Generate Name Part
-        //Max Combining Parts for Name is 6. Min is 3
-        int nameCombiningLength = rand.nextInt(4)+3;
+        //Max Combining Parts for Name is 12. Min is 6
+        int nameCombiningLength = rand.nextInt(13)+6;
         buff.append(generateNameCombiningPart(nameCombiningLength,rand)).append(" ");
 
         //Generate Code Part
@@ -59,8 +59,8 @@ public class NameGenerator {
         StringBuffer buff = new StringBuffer();
 
         //Generate Name Part
-        //Max Combining Parts for Name is 5. Min is 2
-        int nameCombiningLength = rand.nextInt(3)+2;
+        //Max Combining Parts for Name is 10. Min is 4
+        int nameCombiningLength = rand.nextInt(7)+4;
         buff.append(generateNameCombiningPart(nameCombiningLength,rand));
 
         return buff.toString();

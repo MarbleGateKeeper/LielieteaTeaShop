@@ -26,7 +26,7 @@ public class TestingEvent {
                         cap-> {
                             Random rand = event.getPlayer().getRNG();
                             int randSeed = rand.nextInt(99999999)+100;
-                            UniversalPlantType type = UniversalPlantType.GREENHOUSE_B;
+                            UniversalPlantType type = UniversalPlantType.valueOf(rand.nextInt(3)+3);
                             String randName = "NA";
                             switch (type){
                                 case GREENHOUSE_C:

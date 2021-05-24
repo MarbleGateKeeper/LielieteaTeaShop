@@ -14,6 +14,8 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -102,6 +104,10 @@ public abstract class AbstractDrink extends Item {
                 cap-> {
                     DrinkUtils.addPotionTooltip(stack,tooltip,cap.getIngredients(),cap.getFeatures(),cap.getFoodlevel(),cap.getRemaining());
                 });
+    }
+
+    public ITextComponent getDisplayName(ItemStack stack) {
+        return new TranslationTextComponent("lielietea.drink.title").mergeStyle(TextFormatting.GOLD).mergeStyle(TextFormatting.BOLD);
     }
 
 

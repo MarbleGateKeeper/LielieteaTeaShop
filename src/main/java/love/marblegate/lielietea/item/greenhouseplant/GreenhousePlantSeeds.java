@@ -10,6 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -40,5 +42,9 @@ public class GreenhousePlantSeeds extends Item {
                 cap-> {
                     UniversalPlantlUtils.addPotionTooltip(stack,tooltip,cap.getPlant(),cap.getFeatures());
                 });
+    }
+
+    public ITextComponent getDisplayName(ItemStack stack) {
+        return new TranslationTextComponent(this.getTranslationKey(stack)).mergeStyle(TextFormatting.GOLD).mergeStyle(TextFormatting.BOLD);
     }
 }
