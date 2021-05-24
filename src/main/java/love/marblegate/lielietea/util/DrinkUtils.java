@@ -1,22 +1,13 @@
 package love.marblegate.lielietea.util;
 
-import com.google.common.collect.Lists;
-import com.mojang.datafixers.util.Pair;
-import love.marblegate.lielietea.util.datastructure.IngredientFeature;
-import love.marblegate.lielietea.util.datastructure.IngredientInfo;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
+import love.marblegate.lielietea.datastructure.enumeration.IngredientFeature;
+import love.marblegate.lielietea.datastructure.IngredientInfo;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectUtils;
 import net.minecraft.util.text.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.awt.TextComponent;
 import java.util.List;
-import java.util.Map;
 
 public class DrinkUtils {
     private static final IFormattableTextComponent no_ingredient = (new TranslationTextComponent("lielietea.ingredient.none")).mergeStyle(TextFormatting.DARK_RED).mergeStyle(TextFormatting.BOLD);

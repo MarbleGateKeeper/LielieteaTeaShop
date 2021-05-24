@@ -1,7 +1,7 @@
 package love.marblegate.lielietea.capability.plantinfo;
 
-import love.marblegate.lielietea.util.datastructure.IngredientFeature;
-import love.marblegate.lielietea.util.datastructure.PlantInfo;
+import love.marblegate.lielietea.datastructure.enumeration.IngredientFeature;
+import love.marblegate.lielietea.datastructure.PlantInfo;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;

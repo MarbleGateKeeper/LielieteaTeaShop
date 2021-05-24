@@ -1,5 +1,7 @@
-package love.marblegate.lielietea.util.datastructure;
+package love.marblegate.lielietea.datastructure;
 
+import love.marblegate.lielietea.datastructure.enumeration.IngredientSource;
+import love.marblegate.lielietea.datastructure.enumeration.IngredientType;
 import net.minecraft.nbt.CompoundNBT;
 
 public class IngredientInfo {

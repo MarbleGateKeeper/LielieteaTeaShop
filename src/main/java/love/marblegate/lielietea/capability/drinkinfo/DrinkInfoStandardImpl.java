@@ -1,7 +1,7 @@
 package love.marblegate.lielietea.capability.drinkinfo;
 
-import love.marblegate.lielietea.util.datastructure.IngredientFeature;
-import love.marblegate.lielietea.util.datastructure.IngredientInfo;
+import love.marblegate.lielietea.datastructure.enumeration.IngredientFeature;
+import love.marblegate.lielietea.datastructure.IngredientInfo;
 
 import java.util.ArrayList;
 import java.util.List;

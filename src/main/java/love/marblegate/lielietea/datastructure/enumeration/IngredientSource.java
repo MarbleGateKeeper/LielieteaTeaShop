@@ -1,4 +1,4 @@
-package love.marblegate.lielietea.util.datastructure;
+package love.marblegate.lielietea.datastructure.enumeration;
 
 import java.util.HashMap;
 import java.util.Map;
