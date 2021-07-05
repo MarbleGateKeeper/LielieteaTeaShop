@@ -20,7 +20,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class SlimeCageTileEntity extends TileEntity implements ITickableTileEntity {
-    private static final int FEED_MAX_COMSUMEPTION_TIME = 2400;
+    private static final int PER_HUNGER_COMSUMEPTION_TIME = 10;
 
     private ItemStackHandler feedHandler = createHandler();
     private int remainingTime = 0;
@@ -50,8 +50,9 @@ public class SlimeCageTileEntity extends TileEntity implements ITickableTileEnti
             //Slime eats feed when possible
             if(remainingTime==0){
                 if(!feedHandler.getStackInSlot(0).isEmpty()){
+                    //Formula = Hungar * ( 1 * Saturation Rate ) * PER_HUNGER_COMSUMEPTION_TIME
+                    remainingTime = (int) (feedHandler.getStackInSlot(0).getItem().getFood().getHealing() * PER_HUNGER_COMSUMEPTION_TIME * ( 1 + feedHandler.getStackInSlot(0).getItem().getFood().getSaturation()));
                     feedHandler.getStackInSlot(0).shrink(1);
-                    remainingTime = FEED_MAX_COMSUMEPTION_TIME;
                     markDirty();
                     //Sync Data to Client
                     world.notifyBlockUpdate(pos,getBlockState(),getBlockState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);

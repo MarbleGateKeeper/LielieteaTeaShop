@@ -7,6 +7,6 @@ import net.minecraft.item.Item;
 public class Lemon extends Item {
     public Lemon() {
         super(new Properties().group(MiscGroup.INSTANCE)
-                .food(new Food.Builder().hunger(2).saturation(1).setAlwaysEdible().build()));
+                .food(new Food.Builder().hunger(2).saturation(0.2F).setAlwaysEdible().build()));
     }
 }
