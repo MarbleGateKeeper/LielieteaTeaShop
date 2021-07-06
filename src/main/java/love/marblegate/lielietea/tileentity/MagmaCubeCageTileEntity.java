@@ -11,6 +11,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.LazyOptional;
@@ -35,41 +36,39 @@ public class MagmaCubeCageTileEntity extends TileEntity implements ITickableTile
 
     @Override
     public void tick() {
-        if(!world.isRemote()){
-            if(remainingTime>0){
-                //Stop Working
-                if(remainingTime<=1){
-                    //Slime eats feed when possible
-                    if(!feedHandler.getStackInSlot(0).isEmpty()){
-                        //Formula = Hungar * ( 1 * Saturation Rate ) * PER_HUNGER_COMSUMEPTION_TIME
-                        int combustionTime;
+        if (!world.isRemote()) {
+            //Stop Working
+            if (remainingTime <= 1) {
+                //Slime eats feed when possible
+                if (!feedHandler.getStackInSlot(0).isEmpty()) {
+                    //Formula = Hungar * ( 1 * Saturation Rate ) * PER_HUNGER_COMSUMEPTION_TIME
+                    int combustionTime;
 
-                        if(feedHandler.getStackInSlot(0).getItem()==ItemRegistry.coal_cake.get()) combustionTime = PER_COAL_CAKE_COMSUMEPTION_TIME;
-                        else combustionTime = feedHandler.getStackInSlot(0).getBurnTime();
-                        remainingTime = combustionTime;
+                    if (feedHandler.getStackInSlot(0).getItem() == ItemRegistry.coal_cake.get())
+                        combustionTime = PER_COAL_CAKE_COMSUMEPTION_TIME;
+                    else combustionTime = (int) (ForgeHooks.getBurnTime(feedHandler.getStackInSlot(0)) * PER_COMBUSTIBLE_TICK_EXCHANGE_RATE);
+                    remainingTime = combustionTime;
 
-                        feedHandler.getStackInSlot(0).shrink(1);
+                    feedHandler.getStackInSlot(0).shrink(1);
+                    markDirty();
+                    //Sync Data to Client
+                    world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
+                } else {
+                    if (remainingTime == 1) {
+                        remainingTime = 0;
                         markDirty();
                         //Sync Data to Client
-                        world.notifyBlockUpdate(pos,getBlockState(),getBlockState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
+                        world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
                     }
-                    else{
-                        if(remainingTime == 1 ){
-                            remainingTime = 0;
-                            markDirty();
-                            //Sync Data to Client
-                            world.notifyBlockUpdate(pos,getBlockState(),getBlockState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
-                        }
-                    }
-                }
-                //Continue Work
-                else {
-                    remainingTime -= 1;
-                    markDirty();
                 }
             }
+            //Continue Work
+            else {
+                remainingTime -= 1;
+                markDirty();
+            }
         }
-        System.out.print(world.isRemote+" "+remainingTime+"\n");
+        System.out.print(world.isRemote + " " + remainingTime + "\n");
     }
 
     private ItemStackHandler createHandler() {
@@ -82,7 +81,7 @@ public class MagmaCubeCageTileEntity extends TileEntity implements ITickableTile
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return stack.getBurnTime() > 0 || stack.getItem() == ItemRegistry.coal_cake.get();
+                return ForgeHooks.getBurnTime(stack) > 0 || stack.getItem() == ItemRegistry.coal_cake.get();
             }
 
             @Nonnull
@@ -95,11 +94,6 @@ public class MagmaCubeCageTileEntity extends TileEntity implements ITickableTile
                 }
             }
 
-            @Nonnull
-            @Override
-            public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                return ItemStack.EMPTY;
-            }
         };
     }
 

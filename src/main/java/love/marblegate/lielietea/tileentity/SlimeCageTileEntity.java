@@ -33,36 +33,31 @@ public class SlimeCageTileEntity extends TileEntity implements ITickableTileEnti
 
     @Override
     public void tick() {
-        if(!world.isRemote()){
-            if(remainingTime>0){
-                //Stop Working
-                if(remainingTime<=1){
-                    //Slime eats feed when possible
-                    if(!feedHandler.getStackInSlot(0).isEmpty()){
-                        //Formula = Hungar * ( 1 * Saturation Rate ) * PER_HUNGER_COMSUMEPTION_TIME
-                        remainingTime = (int) (feedHandler.getStackInSlot(0).getItem().getFood().getHealing() * PER_HUNGER_COMSUMEPTION_TIME * ( 1 + feedHandler.getStackInSlot(0).getItem().getFood().getSaturation()));
-                        feedHandler.getStackInSlot(0).shrink(1);
+        if (!world.isRemote()) {
+            if (remainingTime <= 1) {
+                //Slime eats feed when possible
+                if (!feedHandler.getStackInSlot(0).isEmpty()) {
+                    //Formula = Hungar * ( 1 * Saturation Rate ) * PER_HUNGER_COMSUMEPTION_TIME
+                    remainingTime = (int) (feedHandler.getStackInSlot(0).getItem().getFood().getHealing() * PER_HUNGER_COMSUMEPTION_TIME * (1 + feedHandler.getStackInSlot(0).getItem().getFood().getSaturation()));
+                    feedHandler.getStackInSlot(0).shrink(1);
+                    markDirty();
+                    //Sync Data to Client
+                    world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
+                } else {
+                    if (remainingTime == 1) {
+                        remainingTime = 0;
                         markDirty();
                         //Sync Data to Client
-                        world.notifyBlockUpdate(pos,getBlockState(),getBlockState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
+                        world.notifyBlockUpdate(pos, getBlockState(), getBlockState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
                     }
-                    else{
-                        if(remainingTime == 1 ){
-                            remainingTime = 0;
-                            markDirty();
-                            //Sync Data to Client
-                            world.notifyBlockUpdate(pos,getBlockState(),getBlockState(), Constants.BlockFlags.DEFAULT_AND_RERENDER);
-                        }
-                    }
-                }
-                //Continue Work
-                else {
-                    remainingTime -= 1;
-                    markDirty();
                 }
             }
+            //Continue Work
+            else {
+                remainingTime -= 1;
+                markDirty();
+            }
         }
-        System.out.print(world.isRemote+" "+remainingTime+"\n");
     }
 
 
@@ -90,12 +85,6 @@ public class SlimeCageTileEntity extends TileEntity implements ITickableTileEnti
                 } else {
                     return super.insertItem(slot, stack, simulate);
                 }
-            }
-
-            @Nonnull
-            @Override
-            public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                return ItemStack.EMPTY;
             }
         };
     }

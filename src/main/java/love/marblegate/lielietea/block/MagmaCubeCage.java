@@ -1,7 +1,6 @@
 package love.marblegate.lielietea.block;
 
 import love.marblegate.lielietea.tileentity.MagmaCubeCageTileEntity;
-import love.marblegate.lielietea.tileentity.SlimeCageTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
@@ -33,12 +32,21 @@ public class MagmaCubeCage extends SlimeCage {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if (tileEntity != null) {
                 LazyOptional<IItemHandler> iItemHandler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
-                iItemHandler.ifPresent((cap) -> {
-                    if(cap.isItemValid(0,player.getHeldItem(Hand.MAIN_HAND))){
-                        ItemStack leftover = cap.insertItem(0, player.getHeldItem(Hand.MAIN_HAND), false);
-                        player.setHeldItem(Hand.MAIN_HAND,leftover);
-                    }
-                });
+                //retrieve
+                if(player.isSneaking()){
+                    iItemHandler.ifPresent((cap) -> {
+                        InventoryHelper.spawnItemStack(worldIn,pos.getX(),pos.getY()+0.8,pos.getZ(),cap.extractItem(0,64,false));
+                    });
+                }
+                //insert
+                else {
+                    iItemHandler.ifPresent((cap) -> {
+                        if(cap.isItemValid(0,player.getHeldItem(Hand.MAIN_HAND))){
+                            ItemStack leftover = cap.insertItem(0, player.getHeldItem(Hand.MAIN_HAND), false);
+                            player.setHeldItem(Hand.MAIN_HAND,leftover);
+                        }
+                    });
+                }
             }
             return ActionResultType.CONSUME;
         }

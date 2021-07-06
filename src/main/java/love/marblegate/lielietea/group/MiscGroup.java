@@ -13,6 +13,6 @@ public class MiscGroup extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(ItemRegistry.lemon.get());
+        return new ItemStack(ItemRegistry.orange.get());
     }
 }
