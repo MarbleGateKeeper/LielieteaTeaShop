@@ -1,5 +1,6 @@
 package love.marblegate.lielietea.tileentity;
 
+import love.marblegate.lielietea.registry.ItemRegistry;
 import love.marblegate.lielietea.registry.TileEntityRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -20,15 +21,16 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class SlimeCageTileEntity extends TileEntity implements ITickableTileEntity {
-    private static final int PER_HUNGER_COMSUMEPTION_TIME = 200;
+public class MagmaCubeCageTileEntity extends TileEntity implements ITickableTileEntity {
+    private static final double PER_COMBUSTIBLE_TICK_EXCHANGE_RATE = 0.1;
+    private static final int PER_COAL_CAKE_COMSUMEPTION_TIME = 1200;
 
     private final ItemStackHandler feedHandler = createHandler();
     private int remainingTime = 0;
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> feedHandler);
 
-    public SlimeCageTileEntity() {
-        super(TileEntityRegistry.slime_cage_tileentity.get());
+    public MagmaCubeCageTileEntity() {
+        super(TileEntityRegistry.magma_cube_cage_tileentity.get());
     }
 
     @Override
@@ -40,7 +42,12 @@ public class SlimeCageTileEntity extends TileEntity implements ITickableTileEnti
                     //Slime eats feed when possible
                     if(!feedHandler.getStackInSlot(0).isEmpty()){
                         //Formula = Hungar * ( 1 * Saturation Rate ) * PER_HUNGER_COMSUMEPTION_TIME
-                        remainingTime = (int) (feedHandler.getStackInSlot(0).getItem().getFood().getHealing() * PER_HUNGER_COMSUMEPTION_TIME * ( 1 + feedHandler.getStackInSlot(0).getItem().getFood().getSaturation()));
+                        int combustionTime;
+
+                        if(feedHandler.getStackInSlot(0).getItem()==ItemRegistry.coal_cake.get()) combustionTime = PER_COAL_CAKE_COMSUMEPTION_TIME;
+                        else combustionTime = feedHandler.getStackInSlot(0).getBurnTime();
+                        remainingTime = combustionTime;
+
                         feedHandler.getStackInSlot(0).shrink(1);
                         markDirty();
                         //Sync Data to Client
@@ -65,7 +72,6 @@ public class SlimeCageTileEntity extends TileEntity implements ITickableTileEnti
         System.out.print(world.isRemote+" "+remainingTime+"\n");
     }
 
-
     private ItemStackHandler createHandler() {
         return new ItemStackHandler(1) {
 
@@ -76,10 +82,7 @@ public class SlimeCageTileEntity extends TileEntity implements ITickableTileEnti
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                if(stack.getItem().isFood()){
-                    return stack.getItem().getFood().isMeat();
-                }
-                return false;
+                return stack.getBurnTime() > 0 || stack.getItem() == ItemRegistry.coal_cake.get();
             }
 
             @Nonnull

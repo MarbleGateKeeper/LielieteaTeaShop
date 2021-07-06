@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -49,6 +50,19 @@ public class SlimeCage extends Block {
             return ActionResultType.CONSUME;
         }
     }
+
+    @Override
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.matchesBlock(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+            if (tileentity instanceof SlimeCageTileEntity) {
+                InventoryHelper.dropItems(worldIn, pos, ((SlimeCageTileEntity)tileentity).getInventory());
+            }
+            super.onReplaced(state, worldIn, pos, newState, isMoving);
+        }
+    }
+
+
 
     @Override
     public boolean hasTileEntity(BlockState state) {

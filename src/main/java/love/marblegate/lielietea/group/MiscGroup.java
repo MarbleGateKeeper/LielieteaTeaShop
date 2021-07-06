@@ -5,7 +5,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
 public class MiscGroup extends ItemGroup {
-    public static MiscGroup INSTANCE = new MiscGroup();
+    public static final MiscGroup INSTANCE = new MiscGroup();
 
     MiscGroup() {
         super("lielietea.misc_group");

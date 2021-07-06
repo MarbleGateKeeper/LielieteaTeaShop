@@ -5,7 +5,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
 public class ProductGroup extends ItemGroup {
-    public static ProductGroup INSTANCE = new ProductGroup();
+    public static final ProductGroup INSTANCE = new ProductGroup();
 
     ProductGroup() {
         super("lielietea.product_group");

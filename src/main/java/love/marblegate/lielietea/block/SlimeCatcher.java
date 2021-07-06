@@ -56,6 +56,7 @@ public class SlimeCatcher extends Block {
         }
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }

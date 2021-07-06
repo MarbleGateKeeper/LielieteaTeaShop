@@ -3,8 +3,6 @@ package love.marblegate.lielietea.network.packet;
 import love.marblegate.lielietea.utils.proxy.ClientProxy;
 import love.marblegate.lielietea.utils.proxy.IProxy;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;

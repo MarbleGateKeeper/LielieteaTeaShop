@@ -1,7 +1,6 @@
 package love.marblegate.lielietea.item.misc;
 
 import love.marblegate.lielietea.group.MiscGroup;
-import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 
 public class CoalCake extends Item {
