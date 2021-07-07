@@ -1,13 +1,18 @@
 package love.marblegate.lielietea.item.drink;
 
-import love.marblegate.lielietea.group.ProductGroup;
-import net.minecraft.item.Item;
-import net.minecraft.item.Rarity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
-public class RedstoneLemonade extends Item {
+public class RedstoneLemonade extends AbstractDrink{
+
     public RedstoneLemonade() {
-        super(new Properties().group(ProductGroup.INSTANCE)
-                .maxDamage(10)
-                .rarity(Rarity.EPIC));
+        super();
+    }
+
+    @Override
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
+        stack.damageItem(1,entityLiving,(entity)->{});
+        return stack;
     }
 }
